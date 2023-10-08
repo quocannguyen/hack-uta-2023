@@ -4,21 +4,25 @@ import pandas as pd
 import streamlit as st
 import joblib
 
-model = joblib.load("filename")
-
 @st.cache_data
 def load_matlab_data():
+    model = joblib.load("hack_uta_mod.joblib")
     engine = matlab.engine.start_matlab()
-    data = engine.load("C:/Users/asher/Desktop/Programs/VSCode/HackUTA/hack-uta-2023/front/pages/asherTrial2.mat")
+    data = engine.load("trial1.mat")
     
-    position = data["Position"]
-    latitude = np.array(engine.getfield(position, "latitude"))
-    longitude = np.array(engine.getfield(position, "longitude"))
-    speed = np.array(engine.getfield(position, "speed"))
+    acceleration = data["Acceleration"]
+    x = np.array(engine.getfield(acceleration, "X"))
+    y = np.array(engine.getfield(acceleration, "Y"))
+    z = np.array(engine.getfield(acceleration, "Z"))
 
-    return latitude, longitude, speed
+    df_X = pd.DataFrame(x)
+    df_Y = pd.DataFrame(y)
+    df_Z = pd.DataFrame(z)
 
-latitude, longitude, speed = load_matlab_data()
+    return df_X, df_Y, df_Z
 
+X, Y, Z = load_matlab_data()
+
+df = pd.concat([X, Y, Z], axis=0)
 st.title("Activity")
 st.line_chart(speed)
