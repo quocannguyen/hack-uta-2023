@@ -44,7 +44,7 @@ def load_prediction_data():
         climb += 1
     elif predictions[index] == 2:
         run += 1
-    
+
     prediction = ""
     if (walk >= climb) and (walk >= run):
         prediction = "walking"
@@ -52,11 +52,11 @@ def load_prediction_data():
         prediction = "climbing"
     else:
         prediction = "running"
-    
+
     return prediction
 
 
-prediction = load_prediction_data() 
+prediction = load_prediction_data()
 MET = 0
 if prediction == "walking":
     MET = 2.5
@@ -66,12 +66,25 @@ elif prediction == "running":
     MET = 10
 
 
-calories = st.session_state.weight * MET
+# calories = st.session_state.weight * MET
 
 st.title("Activity")
-st.write("The user is currently", prediction,".")
+st.write("The user is currently", prediction, ".")
 st.line_chart(speed)
 
 st.header("Calories burned in an hour of activity:")
-st.write(calories)
-
+if "weight" in st.session_state:
+    x = st.session_state.weight * MET
+    st.write(x)
+    activity_mult = x = st.session_state.weight * MET * .5
+    if (x > activity_mult):
+        st.write(
+            "Good Workout. You beat a 12-minute pace record of burning more than 314 calories")
+    elif (x > activity_mult):
+        st.write("Solid effort!! 10 minute-pace record seems way easy for you!")
+    elif (x > activity_mult):
+        st.write(
+            "Brilliant!!! You burned more calories than an average human weighing around 70 kilograms! ")
+    else:
+        st.write(
+            "No worries if you scored low! Everyone has to start at the bottom! Way to go")
