@@ -24,8 +24,5 @@ model = joblib.load("hack_uta_mod.joblib")
 X, Y, Z = load_matlab_data()
 
 df = pd.concat([X, Y, Z], axis=1)
-print(df)
-
-print(model.predict(df))
-#st.title("Activity")
-#st.line_chart(speed)
+st.title("Activity")
+st.line_chart(df)
