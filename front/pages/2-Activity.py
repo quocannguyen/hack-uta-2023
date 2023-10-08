@@ -65,7 +65,8 @@ elif prediction == "climbing":
 elif prediction == "running":
     MET = 10
 
-
+if "weight" not in st.session_state:
+    st.session_state.weight = 0
 calories = st.session_state.weight * MET
 
 st.title("Activity")
@@ -73,5 +74,8 @@ st.write("The user is currently", prediction,".")
 st.line_chart(speed)
 
 st.header("Calories burned in an hour of activity:")
-st.write(calories)
+if calories == 0:
+    st.write("User still needs to input their weight at UserInfo for this function to work.")
+else:
+    st.write(str(calories))
 
