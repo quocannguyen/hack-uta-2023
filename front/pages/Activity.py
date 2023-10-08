@@ -24,5 +24,6 @@ def load_matlab_data():
 X, Y, Z = load_matlab_data()
 
 df = pd.concat([X, Y, Z], axis=0)
-st.title("Activity")
-st.line_chart(speed)
+print(df)
+#st.title("Activity")
+#st.line_chart(speed)
