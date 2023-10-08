@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import joblib
+import UserInfo as ui
 
 
 @st.cache_data
@@ -35,20 +36,33 @@ def load_prediction_data():
     predictions = model.predict(df)
     index = np.argmax(predictions)
 
-    prediction = ""
+    walk = 0
+    climb = 0
+    run = 0
     if predictions[index] == 0:
-        prediction = "Walk"
+        walk += 1
     elif predictions[index] == 1:
-        prediction = "Climb"
+        climb += 1
     elif predictions[index] == 2:
-        prediction = "Run"
-
+        run += 1
+    
+    prediction = ""
+    if (walk >= climb) and (walk >= run):
+        prediction = "walking"
+    elif (climb >= walk) and (climb >= run):
+        prediction = "climbing"
+    else:
+        prediction = "running"
+    
     return prediction
 
 
 prediction = load_prediction_data()
+calories = 
 
 st.title("Activity")
+st.write("The user is currently", prediction,".")
 st.line_chart(speed)
 
-st.text(prediction)
+st.header("Calories burned in an hour of activity:")
+
