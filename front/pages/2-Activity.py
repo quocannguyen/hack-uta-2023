@@ -96,12 +96,12 @@ if "weight" in st.session_state:
     activity_mult = x * .5
     if (x > activity_mult):
         st.write(
-            "Good Workout. You beat a 12-minute pace record of burning more than 314 calories")
+            "Good Workout. You beat a 12-minute pace record of burning more than the average calories")
     elif (x > activity_mult):
         st.write("Solid effort!! 10 minute-pace record seems way easy for you!")
     elif (x > activity_mult):
         st.write(
-            "Brilliant!!! You burned more calories than an average human weighing around 70 kilograms! ")
+            "Brilliant!!! You burned more calories than the average human! ")
     else:
         st.write(
             "No worries if you scored low! Everyone has to start at the bottom! Way to go")
