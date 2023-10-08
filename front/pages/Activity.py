@@ -8,7 +8,7 @@ import joblib
 @st.cache_data
 def load_matlab_data():
     engine = matlab.engine.start_matlab()
-    data = engine.load("trial1.mat")
+    data = engine.load("pages/trial1.mat")
 
     acceleration = data["Acceleration"]
     x = np.array(engine.getfield(acceleration, "X"))
@@ -25,21 +25,28 @@ def load_matlab_data():
     return df_X, df_Y, df_Z, speeds
 
 
-model = joblib.load("hack_uta_mod.joblib")
+model = joblib.load("pages/hack_uta_mod.joblib")
 X, Y, Z, speed = load_matlab_data()
-df = pd.concat([X, Y, Z], axis=1)
-predictions = model.predict(df)
-index = np.argmax(predictions)
 
-prediction = ""
-if predictions[index] == 0:
-    prediction = "Walk"
-elif predictions[index] == 1:
-    prediction = "Climb"
-elif predictions[index] == 2:
-    prediction = "Run"
+@st.cache_data
+def load_prediction_data():
+    df = pd.concat([X, Y, Z], axis=1)
+    predictions = model.predict(df)
+    index = np.argmax(predictions)
+
+    prediction = ""
+    if predictions[index] == 0:
+        prediction = "Walk"
+    elif predictions[index] == 1:
+        prediction = "Climb"
+    elif predictions[index] == 2:
+        prediction = "Run"
+
+    return predictions
+
+predictions = load_prediction_data()
 
 st.title("Activity")
 st.line_chart(speed)
 
-st.text(prediction)
+st.text(predictions[0])
