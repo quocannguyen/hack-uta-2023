@@ -76,25 +76,24 @@ elif prediction == "climbing":
 elif prediction == "running":
     MET = 10
 
-<<<<<<< HEAD:front/pages/Activity.py
 
 # calories = st.session_state.weight * MET
-=======
+
 if "weight" not in st.session_state:
     st.session_state.weight = 0
 calories = st.session_state.weight * MET
->>>>>>> aee98375c326ec1303c7d8b7c2cd8ffeaa8f9c75:front/pages/2-Activity.py
+
 
 st.title("Activity")
 st.write("The user is currently", prediction, ".")
 st.line_chart(speed)
 
 st.header("Calories burned in an hour of activity:")
-<<<<<<< HEAD:front/pages/Activity.py
+
 if "weight" in st.session_state:
     x = st.session_state.weight * MET
     st.write(x)
-    activity_mult = x = st.session_state.weight * MET * .5
+    activity_mult = x * .5
     if (x > activity_mult):
         st.write(
             "Good Workout. You beat a 12-minute pace record of burning more than 314 calories")
@@ -106,10 +105,9 @@ if "weight" in st.session_state:
     else:
         st.write(
             "No worries if you scored low! Everyone has to start at the bottom! Way to go")
-=======
+
 if calories == 0:
-    st.write("User still needs to input their weight at UserInfo for this function to work.")
+    st.write(
+        "User still needs to input their weight at UserInfo for this function to work.")
 else:
     st.write(str(calories))
-
->>>>>>> aee98375c326ec1303c7d8b7c2cd8ffeaa8f9c75:front/pages/2-Activity.py
