@@ -28,12 +28,13 @@ if form1.form_submit_button("Calculate your BMI here"):
     suggestion = st.expander("Expand here to see suggestions.")
     with suggestion:
         if (BMI<19):
-            suggestion.write("You are underweight.")
+            suggestion.write("Since you are underweight, you should increase your calorie intake to build fat and muscle.")
+            suggestion.write("This can be achieved by consuming food that is high in carbohydrate, protein, or fat content.")
         elif(BMI >= 19 and BMI <25):
-            suggestion.write("You are healthy. Good job!")
+            suggestion.write("Keep maintaining an active lifestyle and a balanced diet.")
         elif(BMI >= 25 and BMI <30):
-            suggestion.write("You are overweight.")
+            suggestion.write("You should exercise more and maybe keep an eye on your food intake.")
         elif(BMI >= 30 and BMI <40):
-            suggestion.write("You are obese.")
+            suggestion.write("You should look to make significant lifestyle changes. Physical fitness and dieting can make yourself")
         else:
-            suggestion.write("You are extremely obese.")
+            suggestion.write("Please begin dieting and physical fitness. Your health is in danger.")

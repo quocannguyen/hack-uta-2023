@@ -4,6 +4,6 @@ import streamlit as st
 st.title("Home page")
 
 #App introduction
-st.write("This is an app that ...")
+st.write("This is an app that incorporates MATLAB® and MATLAB Mobile®")
 
 
