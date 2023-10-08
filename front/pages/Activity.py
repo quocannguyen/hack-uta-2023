@@ -2,6 +2,9 @@ import matlab.engine
 import numpy as np
 import pandas as pd
 import streamlit as st
+import joblib
+
+model = joblib.load("filename")
 
 @st.cache_data
 def load_matlab_data():
