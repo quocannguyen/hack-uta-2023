@@ -7,20 +7,31 @@ import joblib
 
 @st.cache_data
 def load_matlab_data():
-    engine = matlab.engine.start_matlab()
-    data = engine.load("front/pages/trial1.mat")
+    # engine = matlab.engine.start_matlab()
+    # data = engine.load("front/pages/trial1.mat")
 
-    acceleration = data["Acceleration"]
-    x = np.array(engine.getfield(acceleration, "X"))
-    y = np.array(engine.getfield(acceleration, "Y"))
-    z = np.array(engine.getfield(acceleration, "Z"))
+    # acceleration = data["Acceleration"]
+    # x = np.array(engine.getfield(acceleration, "X"))
+    # y = np.array(engine.getfield(acceleration, "Y"))
+    # z = np.array(engine.getfield(acceleration, "Z"))
 
-    positions = data["Position"]
-    speeds = np.array(engine.getfield(positions, "speed"))
+    # positions = data["Position"]
+    # speeds = np.array(engine.getfield(positions, "speed"))
 
-    df_X = pd.DataFrame(x)
-    df_Y = pd.DataFrame(y)
-    df_Z = pd.DataFrame(z)
+    # df_X = pd.DataFrame(x)
+    # df_Y = pd.DataFrame(y)
+    # df_Z = pd.DataFrame(z)
+
+    acceleration = pd.read_csv("data/acceleration_run_1.txt")
+    # print(acceleration)
+    df_X = acceleration["X"]
+    df_Y = acceleration["Y"]
+    df_Z = acceleration["Z"]
+
+    # df_X = 0
+    # df_Y = 0
+    # df_Z = 0
+    speeds = pd.read_csv("data/position_run_1.txt")["speed"]
 
     return df_X, df_Y, df_Z, speeds
 
