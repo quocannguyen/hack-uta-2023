@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import joblib
-import UserInfo as ui
 
 
 @st.cache_data
@@ -57,12 +56,22 @@ def load_prediction_data():
     return prediction
 
 
-prediction = load_prediction_data()
-calories = 
+prediction = load_prediction_data() 
+MET = 0
+if prediction == "walking":
+    MET = 2.5
+elif prediction == "climbing":
+    MET = 4
+elif prediction == "running":
+    MET = 10
+
+
+calories = st.session_state.weight * MET
 
 st.title("Activity")
 st.write("The user is currently", prediction,".")
 st.line_chart(speed)
 
 st.header("Calories burned in an hour of activity:")
+st.write(calories)
 

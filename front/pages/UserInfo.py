@@ -6,7 +6,8 @@ form1.header("User info:")
 sex = form1.radio("Sex:",["Male", "Female"])
 age = form1.number_input("Age:", 1, 110)
 if "weight" not in st.session_state:
-    st.session_state.weight = form1.number_input("Weight in kg:", 25,250)
+    st.session_state.weight = 0
+st.session_state.weight = form1.number_input("Weight in kg:", 25,250)
 height = form1.number_input("Height in m:", 0.90,2.50)
 goal = form1.text_input("Your goal with this app: ")
 
